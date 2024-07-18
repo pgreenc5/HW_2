@@ -1,0 +1,43 @@
+library(readr)
+
+df = read.csv("C:/Users/Patrick Green/Desktop/CSC302/WorldCupMatches.csv")
+
+num_rows <- nrow(df)
+num_cols <- ncol(df)
+cat("Number of rows:", num_rows, "\n")
+cat("Number of columns:", num_cols, "\n\n")
+
+#2a: Number of Rows generated is 852, Number of Columns generated is 20
+
+#2b
+
+summary_data <- summary(df)
+print(summary_data)
+
+cat("\n")
+
+#2c
+unique_locations <- n_distinct(df$City)
+cat("Number of unique locations Olympics were held at:", unique_locations, "\n\n")
+
+
+average_attendance <- mean(df$Attendance, na.rm = TRUE)
+cat("Average attendance:", average_attendance, "\n\n")
+
+#2d: Average attendance: 45164.8
+
+str(df)
+#2e
+goals_scored <- df %>%
+  group_by(Home.Team.Name) %>%
+  summarize(total_goals = sum(Home.Team.Goals, na.rm = TRUE))
+  print(goals_scored, n = Inf)
+
+
+average_attendance_by_year <- df %>%
+  group_by(Year) %>%
+  summarize(avg_attendance = mean(Attendance, na.rm = TRUE))
+  print(average_attendance_by_year)
+  
+#2f: 
+
